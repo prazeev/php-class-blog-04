@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $data['categories'] = Category::paginate(20);
+        return view('admin.categories.index')->with($data);
     }
 
     /**
@@ -34,8 +35,20 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-         $category = new Category;
-         $category->slug = ($request->slug != null) ? str_slug($request->slug, '-') : str_slug($request->title, '-');
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required'
+        ]);
+        $category = new Category;
+        $category->slug = ($request->slug != null) ? str_slug($request->slug, '-') : str_slug($request->title, '-');
+
+        do {
+            $validatedSlug = Category::where('slug', $category->slug)->first();
+            if($validatedSlug) {
+                $category->slug = str_slug($category->slug.' '.rand());
+            }
+        } while($validatedSlug);
+        
         $category->title = $request->title;
         $category->description = $request->description;
         if($category->save()){
