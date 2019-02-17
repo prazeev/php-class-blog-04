@@ -48,7 +48,7 @@ class CategoryController extends Controller
                 $category->slug = str_slug($category->slug.' '.rand());
             }
         } while($validatedSlug);
-        
+
         $category->title = $request->title;
         $category->description = $request->description;
         if($category->save()){
@@ -67,7 +67,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['category'] = Category::find($id);
+        return view('admin.categories.view')->with($data);
     }
 
     /**
@@ -78,7 +79,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['category'] = Category::find($id);
+        return view('admin.categories.edit')->with($data);
     }
 
     /**
@@ -90,7 +92,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'status' => 'required'
+        ]);
+        $category = Category::find($id);
+
+        $category->title = $request->title;
+        $category->description = $request->description;
+        $category->status = $request->status;
+        if($category->save()){
+            flash('Category Updated.')->success();
+        } else {
+            flash('Category update failed.')->error();
+        }
+        return redirect()->action('CategoryController@index');
     }
 
     /**
