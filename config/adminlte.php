@@ -85,15 +85,15 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin/home',
 
-    'logout_url' => 'logout',
+    'logout_url' => 'admin/logout',
 
-    'logout_method' => null,
+    'logout_method' => 'post',
 
-    'login_url' => 'login',
+    'login_url' => 'admin/login',
 
-    'register_url' => 'register',
+    'register_url' => 'admin/register',
 
     /*
     |--------------------------------------------------------------------------
@@ -115,11 +115,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Create',
-                    'url'  => 'category/create',
+                    'url'  => 'admin/category/create',
                 ],
                 [
                     'text' => 'Manage',
-                    'url'  => 'category',
+                    'url'  => 'admin/category',
                 ],
             ]
         ]

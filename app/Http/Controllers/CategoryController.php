@@ -51,6 +51,7 @@ class CategoryController extends Controller
 
         $category->title = $request->title;
         $category->description = $request->description;
+        $category->user_id = auth()->id();
         if($category->save()){
             flash('Category created.')->success();
         } else {

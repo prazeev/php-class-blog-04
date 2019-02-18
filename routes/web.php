@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix'=> '/'], function () {
+    Route::get('/', 'SiteController@index');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::resource('category', 'CategoryController');
+Route::group(['prefix' => 'admin'], function () {
+    Auth::routes();
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('category', 'CategoryController');
+    Route::group(['prefix' => 'post'], function () {
+       Route::get('/', 'PostController@index')->name('post.index');
+    });
+});
