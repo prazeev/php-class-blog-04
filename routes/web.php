@@ -13,6 +13,8 @@
 
 Route::group(['prefix'=> '/'], function () {
     Route::get('/', 'SiteController@index');
+    Route::get('/login','UserController@login')->name('user.login.index');
+    Route::post('/login','UserController@auth')->name('user.login');
 });
 
 Route::group(['prefix' => 'admin'], function () {
