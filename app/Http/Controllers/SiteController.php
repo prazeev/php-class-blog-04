@@ -11,4 +11,12 @@ class SiteController extends Controller
         $data['categories'] = Category::limit(3)->get();
         return view('site.home')->with($data);
     }
+
+    public function categoryPage($slug) {
+        $category = Category::where('slug', $slug)->first();
+        if(!$category) {
+            return abort(404);
+        }
+        return $category;
+    }
 }
