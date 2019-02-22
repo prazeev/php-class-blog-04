@@ -48,6 +48,6 @@ class UserController extends Controller
 
 
     public function profile() {
-        return Auth::user();
+        return view('site.profile');
     }
 }

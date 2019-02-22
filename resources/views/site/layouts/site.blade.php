@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.blade.php">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 @if(isset($categories))
                     @foreach($categories as $category)
@@ -47,9 +47,9 @@
                 @endif
                 <li class="nav-item">
                     @auth
-                        <a href="/" class="nav-link"><i class="fa fa-user"></i> {{auth()->user()->name}}</a>
+                        <a href="{{route('user.profile')}}" class="nav-link"><i class="fa fa-user"></i> {{auth()->user()->name}}</a>
                     @else
-                        <a href="/" class="nav-link">Login</a>
+                        <a href="{{route('user.login.index')}}" class="nav-link">Login</a>
                     @endif
                 </li>
             </ul>

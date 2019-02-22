@@ -21,7 +21,9 @@ Route::group(['prefix'=> '/'], function () {
 
     // auth group
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/profile', 'UserController@profile');
+        Route::get('/profile', 'UserController@profile')->name('user.profile');
+        Route::post('/post', 'PostController@create')->name('post.create');
+        Route::get('/post', 'PostController@index')->name('post.list');
     });
 
 
