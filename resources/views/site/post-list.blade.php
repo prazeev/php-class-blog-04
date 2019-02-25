@@ -14,6 +14,7 @@
                             <th>Reference ID</th>
                             <th>Title</th>
                             <th>Slug</th>
+                            <th>Category</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -22,6 +23,7 @@
                         <tr>
                             <td>{{$post->id}}</td>
                             <td>{{$post->title}}</td>
+                            <td>{{$post->category->title}}</td>
                             <td>{{$post->slug}}</td>
                             <td>Action</td>
                         </tr>

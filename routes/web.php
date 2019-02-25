@@ -19,6 +19,9 @@ Route::group(['prefix'=> '/'], function () {
     Route::post('/register','UserController@signup')->name('user.register');
 
 
+    Route::get('{category_slug}/{post_slug}', 'SiteController@singlePage')->name('single.page');
+
+
     // auth group
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile', 'UserController@profile')->name('user.profile');

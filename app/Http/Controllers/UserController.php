@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,7 @@ class UserController extends Controller
 
 
     public function profile() {
-        return view('site.profile');
+        $data['categories_post'] = Category::all();
+        return view('site.profile')->with($data);
     }
 }

@@ -37,6 +37,14 @@
             <form action="{{route('post.create')}}" method="post">
                 @csrf
                 <div class="form-group">
+                    <label for="category_id">Category*</label>
+                    <select name="category_id" id="category_id" class="form-control">
+                        @foreach($categories_post as $category)
+                            <option value="{{$category->id}}"{{$category->id == old('category_id') ? ' selected' : null}}>{{$category->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="title">Title*</label>
                     <input type="text" name="title" placeholder="Enter Title" class="form-control" value="{{old('title')}}">
                 </div>
